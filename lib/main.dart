@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     const HomePage(),
-    const LoveCardPage(), // هنا حطينا بطاقة الحب بدل الأسرار
+    const LoveCardPage(),
     const CounterPage(),
     const WishlistPage(),
     const ChatPage(),
@@ -135,7 +135,7 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-// --- 3. الصفحة الرئيسية (رسالة اليوم + الشهادة) ---
+// --- 3. الصفحة الرئيسية ---
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -272,8 +272,7 @@ class _LoveCardPageState extends State<LoveCardPage> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: isActive 
-            ? // إذا كانت البطاقة مجددة اليوم
-              Container(
+            ? Container(
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -300,8 +299,7 @@ class _LoveCardPageState extends State<LoveCardPage> {
                   ],
                 ),
               )
-            : // إذا ما كانت مجددة (تحذير)
-              Column(
+            : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.warning_amber_rounded, size: 80, color: Colors.orange),
@@ -340,9 +338,10 @@ class _LoveCardPageState extends State<LoveCardPage> {
                     ),
                     onPressed: _renewCard,
                     child: const Text('تجديد البطاقة', style: TextStyle(fontSize: 18, color: Colors.white)),
-                  )
+                  ), // <--- هون كانت الغلطة (الفاصلة الناقصة)
                 ],
               ),
+        ),
       ),
     );
   }
